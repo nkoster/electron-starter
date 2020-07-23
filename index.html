@@ -14,11 +14,11 @@
     </form>
     <script>
         const electron = require('electron')
-        
+        const { ipcRenderer } = electron
         document.querySelector('form').addEventListener('submit', evt => {
             evt.preventDefault()
-            const file = document.querySelector('input').files[0]
-
+            const { path } = document.querySelector('input').files[0]
+            ipcRenderer.send('submit', path)
         })
     </script>
 </body>
