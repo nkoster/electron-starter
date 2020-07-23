@@ -12,6 +12,7 @@
         <input type="file" type="video/*" />
         <button type="submit">Get info</button>
     </form>
+    <h4 id="duration"></h4>
     <script>
         const electron = require('electron')
         const { ipcRenderer } = electron
@@ -19,6 +20,10 @@
             evt.preventDefault()
             const { path } = document.querySelector('input').files[0]
             ipcRenderer.send('submit', path)
+        })
+        ipcRenderer.on('duration', (evt, duration) => {
+            document.querySelector('#duration').innerText = 
+                `duration is ${duration}`
         })
     </script>
 </body>
